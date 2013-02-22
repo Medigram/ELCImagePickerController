@@ -25,7 +25,7 @@
 	[elcPicker setDelegate:self];
     
     ELCImagePickerDemoAppDelegate *app = (ELCImagePickerDemoAppDelegate *)[[UIApplication sharedApplication] delegate];
-	[app.viewController presentModalViewController:elcPicker animated:YES];
+	[app.viewController presentViewController:elcPicker animated:YES completion:nil];
     [elcPicker release];
     [albumController release];
 }
@@ -66,7 +66,7 @@
     tablePicker.assetGroup = group;
     [tablePicker.assetGroup setAssetsFilter:[ALAssetsFilter allPhotos]];
     
-	[self presentModalViewController:elcPicker animated:YES];
+	[self presentViewController:elcPicker animated:YES completion:nil];
 	[tablePicker release];
     [elcPicker release];
 }
@@ -83,7 +83,7 @@
 
 - (void)elcImagePickerController:(ELCImagePickerController *)picker didFinishPickingMediaWithInfo:(NSArray *)info {
 	
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:nil];
 	
     for (UIView *v in [scrollview subviews]) {
         [v removeFromSuperview];
@@ -93,7 +93,8 @@
 	workingFrame.origin.x = 0;
     
     NSMutableArray *images = [NSMutableArray arrayWithCapacity:[info count]];
-	
+	NSLog(@"Info array is %@", info);
+    
 	for(NSDictionary *dict in info) {
 	
         UIImage *image = [dict objectForKey:UIImagePickerControllerOriginalImage];
@@ -117,7 +118,7 @@
 
 - (void)elcImagePickerControllerDidCancel:(ELCImagePickerController *)picker {
 
-	[self dismissModalViewControllerAnimated:YES];
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)didReceiveMemoryWarning {

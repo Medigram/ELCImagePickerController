@@ -24,8 +24,12 @@
 @synthesize singleSelection;
 @synthesize columns;
 
--(void)viewDidLoad {
-        
+-(void)viewDidLoad
+{    
+    [super viewDidLoad];
+    
+    self.contentSizeForViewInPopover = CGSizeMake(320, 480);
+    
 	[self.tableView setSeparatorColor:[UIColor clearColor]];
 	[self.tableView setAllowsSelection:NO];
 

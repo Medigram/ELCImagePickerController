@@ -16,6 +16,12 @@
 
 @synthesize delegate;
 
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.contentSizeForViewInPopover = CGSizeMake(320, 480);
+}
+
 -(void)cancelImagePicker {
 	if([delegate respondsToSelector:@selector(elcImagePickerControllerDidCancel:)]) {
 		[delegate performSelector:@selector(elcImagePickerControllerDidCancel:) withObject:self];
